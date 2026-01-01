@@ -6,6 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(sdl2_hello main.cpp)
 
+add_custom_command(
+  TARGET sdl2_hello
+  PRE_BUILD
+  COMMENT "Copying font file to build directory"
+  COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/font.ttf"
+          "$<TARGET_FILE_DIR:sdl2_hello>/font.ttf")
+
 # -------------------------
 # Emscripten build
 # -------------------------
